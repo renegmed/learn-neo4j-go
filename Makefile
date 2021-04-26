@@ -2,6 +2,10 @@ init-project:
 	go mod init learn-neo4j-go
 up:
 	docker-compose up -d 
+db:
+	docker exec -it neo4j cypher-shell -u neo4j -p neo -d system "SHOW DATABASES;"
+cli:
+	docker exec -it neo4j  bin/cypher-shell -u neo4j -p neo
 
 run:
 	NEO4J_URI="bolt://127.0.0.1:7687" NEO4J_USERNAME="neo4j" NEO4J_PASSWORD="testing" NEO4J_DATABASE_NAME="neo4j" go run -race main.go  
